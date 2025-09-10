@@ -1,4 +1,4 @@
-console.log("hello!!");
-console.log("Everthing is path in coding");
-console.log("...");
-console.log("Testing the file>save in vscode");
+import { v1 as uuid1, v4 as uuid4 } from "uuid";
+
+console.log("Taken from version1 : ", uuid1());
+console.log("Taken fron version 4 : ", uuid4());
