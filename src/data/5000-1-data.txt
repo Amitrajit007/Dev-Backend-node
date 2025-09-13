@@ -1,0 +1,11 @@
+status : [object Object] , ID:0c19bc70-90bc-11f0-82b1-9f2aeb979798 , Method: GET 
+status : [object Object] , ID:0d3d54e0-90bc-11f0-82b1-9f2aeb979798 , Method: GET 
+status : {"body":"I am Amitrajit"} , ID:1792bf70-90bc-11f0-b850-dd6491ce258c , Method: GET 
+status : I am Amitrajit , ID:28555de0-90bc-11f0-acc3-0becf30f4606 , Method: GET 
+status : I am Tiya , ID:2dae89b0-90bc-11f0-acc3-0becf30f4606 , Method: GET 
+status : I am Tiya and I love my Omi , ID:3cd7c370-90bc-11f0-acc3-0becf30f4606 , Method: GET 
+status : I am Tiya and I love my Omi , ID:2fdea7c0-90ca-11f0-9cc5-a51621a3e7a9 , Method: GET 
+status : i am Angular  , ID:3b4422c0-90ca-11f0-9cc5-a51621a3e7a9 , Method: GET 
+status : i am Angular  , ID:74a79a60-90ca-11f0-ab0a-1df2e2b9ec9d , Method: PUT 
+status : hey there I am Jone Doe , ID:811a8dc0-90ca-11f0-ab0a-1df2e2b9ec9d , Method: GET 
+status : Hello World !! , ID:8834f191-90ca-11f0-ab0a-1df2e2b9ec9d , Method: GET 

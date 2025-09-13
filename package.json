@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "nodemon src/Projects/project-1/project-1.js"
+    "start": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "",
