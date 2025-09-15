@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "username": "amit",
+    "password": "$2b$10$.igQLChVS6z7i5jarDfsWOY85EHH04L91AL5aiB1bh7HoHn0qaKNa"
+  },
+  {
+    "username": "tiya",
+    "password": "$2b$10$m/oXkj3fE/2rr5V09DypxOJNs7gp8jJCzdBIzd5e.BazSwyTWtjiq"
+  },
+  {
+    "username": "john",
+    "password": "$2b$10$KVke/3CMw713btYvKgP3WO6ipOpSq4mrGAOUnbp4xe4eYzhLfPHSK"
+  },
+  {
+    "username": "jane",
+    "password": "$2b$10$W1L3amdr9zs87R5sGfFLWeqU1lcIPusAjsHJV7fe9WcXu3F3XdDqi"
+  }
+]
