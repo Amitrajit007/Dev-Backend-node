@@ -1,6 +1,8 @@
 import express from "express";
 import registerrouter from "./routes/register.routes.js";
 import Authrouter from "./routes/Auth.routes.js";
+import getrouter from "./routes/get.routes.js";
+import { verifyJWT } from "./middleware/varifyJWT.js";
 const app = express();
 
 const PORT = 5000;
@@ -9,6 +11,8 @@ const PORT = 5000;
 app.use(express.json());
 app.use("/register", registerrouter);
 app.use("/auth", Authrouter);
+app.use(verifyJWT);
+app.use("/data", getrouter);
 // Basic route
 app.use((req, res) => {
   res.status(404).send("Not found data status 404");

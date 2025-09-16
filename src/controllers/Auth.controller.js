@@ -1,6 +1,15 @@
+import fs from "node:fs";
 import users from "../models/users.json" assert { type: "json" };
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const userDB = {
   users: users,
   setUsers: function (data) {
@@ -12,15 +21,38 @@ export const userAuth = async (req, res) => {
   let { user, password } = req.body;
   user = user.toLowerCase();
   if (!user || !password)
-    res.status(400).json({ msg: "Username and password are rwquired" });
+    return res.status(400).json({ msg: "Username and password are rwquired" });
   const matchEntity = userDB.users.find((people) => people.username === user);
   if (!matchEntity) return res.status(401).json({ msg: "User not found." });
   const match = await bcrypt.compare(password, matchEntity.password);
   if (match) {
     // create JWT
-    return res
-      .status(201)
-      .json({ msg: `user found and Validated , Welcome ${user}` });
+    const accessToken = jwt.sign(
+      { username: matchEntity.username },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "30s" }
+    );
+    const refreshToken = jwt.sign(
+      { username: matchEntity.username },
+      process.env.REFRESH_TOKEN_SECRET,
+      { expiresIn: "1d" }
+    );
+    const otherUser = userDB.users.filter(
+      (person) => person.username !== matchEntity.username
+    );
+    const currentUser = { ...matchEntity, refreshToken };
+    userDB.setUsers([...otherUser, currentUser]);
+    // * saving the data in the file
+    await fs.promises.writeFile(
+      path.join(__dirname, "../models/users.json"),
+      JSON.stringify(userDB.users)
+    );
+
+    res.cookie("jwt", refreshToken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+    return res.json({ accessToken });
   }
   res.status(401).json({ msg: `for ${user} incorrecr password` });
   //   horrible for the safety check :->
