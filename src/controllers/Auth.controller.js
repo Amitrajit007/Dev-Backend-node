@@ -26,12 +26,13 @@ export const userAuth = async (req, res) => {
   if (!matchEntity) return res.status(401).json({ msg: "User not found." });
   const match = await bcrypt.compare(password, matchEntity.password);
   if (match) {
-    // create JWT
+    //!!!!!!!!!!!!!!!!!!!!!!!!! create JWT
     const accessToken = jwt.sign(
-      { username: matchEntity.username },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "30s" }
+      { username: matchEntity.username }, // 👉 payload: data to embed inside the token
+      process.env.ACCESS_TOKEN_SECRET, // 👉 secret key used to sign/verify the token
+      { expiresIn: "30s" } // 👉 options: here, token expiry time (30 seconds)
     );
+    // this payload is crusal cause we get it back from the jwt.varify's decoded part
     const refreshToken = jwt.sign(
       { username: matchEntity.username },
       process.env.REFRESH_TOKEN_SECRET,

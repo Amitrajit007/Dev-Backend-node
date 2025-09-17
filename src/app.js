@@ -3,9 +3,14 @@ import registerrouter from "./routes/register.routes.js";
 import Authrouter from "./routes/Auth.routes.js";
 import getrouter from "./routes/get.routes.js";
 import { verifyJWT } from "./middleware/varifyJWT.js";
+import cookieParser from "cookie-parser";
 const app = express();
 
 const PORT = 5000;
+
+// parsing the cookie
+
+app.use(cookieParser());
 
 // Middleware to parse JSON
 app.use(express.json());
