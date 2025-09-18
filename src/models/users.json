@@ -20,6 +20,6 @@
   {
     "username": "james",
     "password": "$2b$10$yVrrLbF2cXLLhTDqOd44e.8vMsXEsdqU2dPCvYh6CfA3QSNgqa/gm",
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphbWVzIiwiaWF0IjoxNzU4MDU5MTk3LCJleHAiOjE3NTgxNDU1OTd9.WtJG4VyHfQQgUfkR-PWEuJz7ptZhl5myQlhVyTdaGto"
+    "refreshToken": ""
   }
 ]

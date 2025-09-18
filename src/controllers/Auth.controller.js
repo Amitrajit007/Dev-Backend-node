@@ -48,7 +48,7 @@ export const userAuth = async (req, res) => {
       path.join(__dirname, "../models/users.json"),
       JSON.stringify(userDB.users)
     );
-
+    // !!!!!!!!!!!!!!!!!! sending the refresh token as the cookies named "jwt"
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
