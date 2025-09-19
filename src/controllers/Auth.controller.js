@@ -26,9 +26,16 @@ export const userAuth = async (req, res) => {
   if (!matchEntity) return res.status(401).json({ msg: "User not found." });
   const match = await bcrypt.compare(password, matchEntity.password);
   if (match) {
+    const userRoles = Object.values(matchEntity.roles);
     //!!!!!!!!!!!!!!!!!!!!!!!!! create JWT
     const accessToken = jwt.sign(
-      { username: matchEntity.username }, // 👉 payload: data to embed inside the token
+      {
+        userInfo: {
+          username: matchEntity.username,
+          roles: userRoles,
+        },
+      },
+      // 👉 payload: data to embed inside the token
       process.env.ACCESS_TOKEN_SECRET, // 👉 secret key used to sign/verify the token
       { expiresIn: "30s" } // 👉 options: here, token expiry time (30 seconds)
     );

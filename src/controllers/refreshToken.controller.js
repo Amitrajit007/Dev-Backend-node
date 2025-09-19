@@ -27,8 +27,14 @@ export const handleRefreshToken = (req, res) => {
       // the decoded give the payload which we create while making the Tokens using the jwt.sign
       return res.status(403).send("user name doesnot match");
     }
+    const userRoles = Object.values(matchEntity.roles);
     const accessToken = jwt.sign(
-      { username: decoded.username },
+      {
+        userInfo: {
+          username: decoded.username,
+          roles: userRoles,
+        },
+      },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "1m" }
     );

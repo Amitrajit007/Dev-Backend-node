@@ -1,24 +1,42 @@
 [
   {
     "username": "john",
+    "roles": {
+      "user": 1001
+    },
     "password": "$2b$10$KVke/3CMw713btYvKgP3WO6ipOpSq4mrGAOUnbp4xe4eYzhLfPHSK"
   },
   {
     "username": "jane",
+    "roles": {
+      "user": 1001
+    },
     "password": "$2b$10$W1L3amdr9zs87R5sGfFLWeqU1lcIPusAjsHJV7fe9WcXu3F3XdDqi"
   },
   {
     "username": "tiya",
+    "roles": {
+      "user": 1001,
+      "admin": 3001
+    },
     "password": "$2b$10$m/oXkj3fE/2rr5V09DypxOJNs7gp8jJCzdBIzd5e.BazSwyTWtjiq",
     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRpeWEiLCJpYXQiOjE3NTgwNTY3NzMsImV4cCI6MTc1ODE0MzE3M30.FDLRNBCc4Q-xVR5HgjpvH3F4_9GUX4KnMvxH0lBvCQE"
   },
   {
     "username": "amit",
+    "roles": {
+      "user": 1001,
+      "devoloper": 4001
+    },
     "password": "$2b$10$.igQLChVS6z7i5jarDfsWOY85EHH04L91AL5aiB1bh7HoHn0qaKNa",
     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXQiLCJpYXQiOjE3NTgwNTY4NDYsImV4cCI6MTc1ODE0MzI0Nn0.rVtk4KF8X2ACt798v-fnhlZeb12Go2iFDO78YbnMxR8"
   },
   {
     "username": "james",
+    "roles": {
+      "user": 1001,
+      "editor": 2001
+    },
     "password": "$2b$10$yVrrLbF2cXLLhTDqOd44e.8vMsXEsdqU2dPCvYh6CfA3QSNgqa/gm",
     "refreshToken": ""
   }
