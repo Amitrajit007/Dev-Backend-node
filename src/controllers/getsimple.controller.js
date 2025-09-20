@@ -7,10 +7,32 @@ const getController = (req, res) => {
     skills: ["JavaScript", "Node.js", "React", "C++"],
     isStudent: true,
     address: {
-      city: "Kolkata",
-      state: "West Bengal",
+      city: "***",
+      state: "***",
       country: "India",
     },
   });
 };
-export default getController;
+
+const postController = (req, res) => {
+  // editor
+  const data = req.body;
+  res.status(201).send(`welcome Editor`);
+};
+const putController = (req, res) => {
+  // admin
+  const data = req.body;
+  res.status(201).send(`welcome Admin`);
+};
+const deleteController = (req, res) => {
+  // dev
+  const data = req.body;
+  res.status(201).send(`welcome Dev`);
+};
+
+export default {
+  getController,
+  postController,
+  putController,
+  deleteController,
+};
