@@ -1,5 +1,6 @@
 import express from "express";
 import controller from "../controllers/getsimple.controller.js";
+// it was sent as a default
 const router = express.Router();
 import { USER_ROLE } from "../config/userRole.js";
 import { verifyRoles } from "../middleware/verifyRoles.js";

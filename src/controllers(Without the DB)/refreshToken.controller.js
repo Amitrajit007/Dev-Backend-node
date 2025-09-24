@@ -1,13 +1,22 @@
-import User from "../models/User.js";
+import users from "../models/users.json" assert { type: "json" };
 
 import jwt from "jsonwebtoken";
 
-export const handleRefreshToken = async (req, res) => {
+const userDB = {
+  users: users,
+  setUsers: function (data) {
+    this.users = data;
+  },
+};
+
+export const handleRefreshToken = (req, res) => {
   const cookies = req.cookies;
   if (!cookies?.jwt) return res.status(400).send("No cookie?.jwt found "); // JWT inside the cookies
   const refreshToken = cookies.jwt;
-
-  const matchEntity = await User.findOne({ refreshToken });
+  console.log(refreshToken);
+  const matchEntity = userDB.users.find(
+    (people) => people.refreshToken === refreshToken
+  );
   if (!matchEntity) return res.status(403).send("Got a wrong token"); // Basically provided a wrong token
 
   //!!!!!!!!!!!!!!!!!!!!!!!!! create JWT
@@ -25,7 +34,7 @@ export const handleRefreshToken = async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "30s" }
+      { expiresIn: "1m" }
     );
     res.json({ accessToken });
   });

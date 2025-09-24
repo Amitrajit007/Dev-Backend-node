@@ -1,19 +1,30 @@
-import User from "../models/User.js";
-
+import fs from "node:fs";
+import users from "../models/users.json" assert { type: "json" };
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const userDB = {
+  users: users,
+  setUsers: function (data) {
+    this.users = data;
+  },
+};
 
 export const userAuth = async (req, res) => {
   let { user, password } = req.body;
   user = user.toLowerCase();
   if (!user || !password)
     return res.status(400).json({ msg: "Username and password are rwquired" });
-  const matchEntity = await User.findOne({ username: user });
+  const matchEntity = userDB.users.find((people) => people.username === user);
   if (!matchEntity) return res.status(401).json({ msg: "User not found." });
-
   const match = await bcrypt.compare(password, matchEntity.password);
   if (match) {
-    const userRoles = Object.values(matchEntity.roles); // provide roles also as the payload.
+    const userRoles = Object.values(matchEntity.roles);
     //!!!!!!!!!!!!!!!!!!!!!!!!! create JWT
     const accessToken = jwt.sign(
       {
@@ -32,10 +43,16 @@ export const userAuth = async (req, res) => {
       process.env.REFRESH_TOKEN_SECRET,
       { expiresIn: "1d" }
     );
-
-    matchEntity.refreshToken = refreshToken;
-    const result = await matchEntity.save();
-    console.log(result);
+    const otherUser = userDB.users.filter(
+      (person) => person.username !== matchEntity.username
+    );
+    const currentUser = { ...matchEntity, refreshToken };
+    userDB.setUsers([...otherUser, currentUser]);
+    // * saving the data in the file
+    await fs.promises.writeFile(
+      path.join(__dirname, "../models/users.json"),
+      JSON.stringify(userDB.users)
+    );
     // !!!!!!!!!!!!!!!!!! sending the refresh token as the cookies named "jwt"
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
